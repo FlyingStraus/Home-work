@@ -23,7 +23,7 @@ contract Token {
     }
 
     function transfer(address recipient, uint amount) external returns(bool){
-        if (isBlacklist[msg.sender] == true) return;
+        require(isBlacklist[msg.sender] == false);
         balance_changer[msg.sender] -= amount;
         balance_changer[recipient] += amount;
         emit Transfer(msg.sender, recipient, amount);
