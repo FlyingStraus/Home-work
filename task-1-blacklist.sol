@@ -23,7 +23,7 @@ contract Token {
     }
 
     function transfer(address recipient, uint amount) external returns(bool){
-        require(isBlacklist[msg.sender] == false);
+        require(!isBlacklist[msg.sender], "You are on BlackList");
         balance_changer[msg.sender] -= amount;
         balance_changer[recipient] += amount;
         emit Transfer(msg.sender, recipient, amount);
